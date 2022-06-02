@@ -1,0 +1,112 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		
+		<TargetFrameworks>net6.0-windows;net461</TargetFrameworks>
+		<Configurations>Debug;Release;NET_5_WIN_DEBUG;NET_5_WIN_RELEASE</Configurations>
+		<!--<RuntimeIdentifiers>win-x64;win-x86</RuntimeIdentifiers>-->
+		
+		<UseWindowsForms>true</UseWindowsForms>
+		<UseWpf>true</UseWpf>
+		<LangVersion>latest</LangVersion>
+		<Product>Data Interfaces Library</Product>
+		<Description>Data Interfaces Library</Description>
+		<Copyright>NETProjects</Copyright>
+		<Company>NETProjects</Company>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+        <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<NoWarn>1591;1570;1573;0612</NoWarn>	
+		
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)'=='Debug' or '$(Configuration)'=='Release'">
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)'=='NET_5_WIN_DEBUG' or '$(Configuration)'=='NET_5_WIN_RELEASE'">
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)'=='NET_5_WIN_DEBUG' or '$(Configuration)'=='Debug'">
+		<Optimize>false</Optimize>
+		<DefineConstants>DEBUG;TRACE</DefineConstants>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="protobuf-net" Version="2.4.6" />
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)'=='net461'">
+
+		<PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.19" />
+
+		<Reference Include="System.Windows.Forms" />
+		<Reference Include="System.ComponentModel.Composition" />
+		<Reference Include="System.ComponentModel.DataAnnotations" />
+		<Reference Include="System.IdentityModel" />
+		<Reference Include="System.IdentityModel.Services" />
+
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)'=='net6.0'">
+		<Compile Remove="Modules\Client\**\*" />
+		<Compile Remove="Modules\Manager\**\*" />
+
+		<Compile Remove="Libraries\CoreLib\Queue\QueueEntryBase.cs" />
+
+		<Compile Remove="Libraries\SkinInterfaces\**\*" />
+		<Compile Remove="Libraries\SharedLib\ViewModels\**\*" />
+		<Compile Remove="Libraries\SharedLib\Management\**\*" />
+		<Compile Remove="Libraries\IntegrationLib\**\*" />
+		<Compile Remove="Libraries\Localization\**\*" />
+		<Compile Remove="Libraries\System\Windows\Data\**\*" />
+		<Compile Remove="Libraries\System\Windows\Forms\**\*" />
+		<Compile Remove="Libraries\GizmoShell\**\*" />
+		<Compile Remove="Libraries\CoreLib\Hooking\**\*" />
+		<Compile Remove="Libraries\CoreLib\Conversion\**\*" />
+
+		<Compile Remove="Libraries\System\Windows\Data\LimitCollectionView.cs" />
+		<Compile Remove="Libraries\Modules\Manager\ViewModels\Interfaces\IViewModelLocatorList.cs" />
+		<Compile Remove="Libraries\SharedLib\Delegates.cs" />
+		<Compile Remove="Libraries\SharedLib\Services\MessageService.cs" />
+		<Compile Remove="Libraries\SharedLib\Classes\WindowShowParams.cs" />
+		<Compile Remove="Libraries\SharedLib\Classes\Delegates.cs" />
+		<Compile Remove="Libraries\SharedLib\Classes\Shared.cs" />
+		<Compile Remove="Libraries\SharedLib\Classes\PropertyChangeNotifier.cs" />
+
+		<Compile Remove="Modules\Manager\ViewModels\Interfaces\IUserViewModelLocator.cs" />
+		<Compile Remove="Modules\Manager\Modules\Interfaces\IUserModuleSelectionProvider.cs" />
+
+		<Compile Include="Modules\Client\Enumerations\**\*" />
+		<Compile Include="Modules\Client\ViewModels\Enumerations\**\*" />
+		<Compile Include="Modules\Manager\Enumerations\**\*" />
+		<Compile Include="Libraries\IntegrationLib\Enumerations\**\*" />
+		<Compile Include="Libraries\Localization\Attributes\**\*" />
+		<Compile Include="Libraries\SharedLib\Management\Interfaces\**\*" />
+
+
+		<Compile Include="Libraries\IntegrationLib\Interfaces\IApplicationLicenseKey.cs" />
+		<Compile Include="Libraries\IntegrationLib\Interfaces\IApplicationLicense.cs" />
+		<Compile Include="Libraries\IntegrationLib\Interfaces\ILicenseReservation.cs" />
+		<Compile Include="Libraries\IntegrationLib\Interfaces\IUserIdentity.cs" />
+		<Compile Include="Libraries\IntegrationLib\Interfaces\IAuthResult.cs" />
+		<Compile Include="Libraries\IntegrationLib\Classes\AuthResult.cs" />
+		<Compile Include="Libraries\IntegrationLib\Classes\ClaimsUserIdentity.cs" />
+		<Compile Include="Libraries\IntegrationLib\Classes\ClaimTypeBase.cs" />
+		<Compile Include="Libraries\IntegrationLib\Classes\HttpContextIdentityProvider.cs" />
+		<Compile Include="Libraries\IntegrationLib\Interfaces\IPlugin.cs" />
+		<Compile Include="Libraries\IntegrationLib\Interfaces\IClaimType.cs" />
+		<Compile Include="Libraries\IntegrationLib\Interfaces\IDispatcherPrincipal.cs" />
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)'=='net6.0' or '$(TargetFramework)'=='net6.0-windows'">
+		<PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
+		<PackageReference Include="System.ComponentModel.Composition" Version="5.0.0" />
+		<PackageReference Include="Microsoft.Win32.Registry" Version="5.0.0" />
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)'=='net6.0-windows'">
+		<PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.19" />
+	</ItemGroup>
+
+</Project>
